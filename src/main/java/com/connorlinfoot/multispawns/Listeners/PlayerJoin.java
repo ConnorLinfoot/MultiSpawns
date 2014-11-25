@@ -20,8 +20,9 @@ public class PlayerJoin implements Listener {
 
     private static void randomSpawn(Player player) {
         FileConfiguration config = MultiSpawns.getPlugin().getConfig();
+        if (config.getConfigurationSection("Spawns") == null) return;
         int size = config.getConfigurationSection("Spawns").getKeys(false).size();
-        if (config.getConfigurationSection("Spawns").getKeys(false) == null || size == 0) return;
+        if (size == 0) return;
         int ii = randInt(0, size - 1);
         int i = 0;
         for (String key : config.getConfigurationSection("Spawns").getKeys(false)) {
