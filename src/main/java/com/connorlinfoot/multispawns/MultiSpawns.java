@@ -1,6 +1,8 @@
 package com.connorlinfoot.multispawns;
 
 import com.connorlinfoot.multispawns.Commands.AddSpawnCommand;
+import com.connorlinfoot.multispawns.Commands.DelSpawnCommand;
+import com.connorlinfoot.multispawns.Commands.MultiSpawnsCommand;
 import com.connorlinfoot.multispawns.Listeners.PlayerJoin;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -54,12 +56,13 @@ public class MultiSpawns extends JavaPlugin {
     private void registerEvents(ConsoleCommandSender console) {
         PluginManager pluginManager = Bukkit.getPluginManager();
         pluginManager.registerEvents(new PlayerJoin(), this);
-        //pluginManager.registerEvents(new ItemClick(), this);
         console.sendMessage(Prefix + "Events have been registered");
     }
 
     private void registerCommands(ConsoleCommandSender console) {
         getCommand("addspawn").setExecutor(new AddSpawnCommand());
+        getCommand("delspawn").setExecutor(new DelSpawnCommand());
+        getCommand("multispawns").setExecutor(new MultiSpawnsCommand());
         console.sendMessage(Prefix + "Commands have been registered");
     }
 }
