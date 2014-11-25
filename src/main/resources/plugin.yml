@@ -1,0 +1,10 @@
+name: MultiSpawns
+description: MultiSpawns
+main: com.connorlinfoot.multispawns.MultiSpawns
+version: 1.0-SNAPSHOT
+authors: [Connor Linfoot]
+commands:
+  addspawn:
+    description: Add spawn command
+  delspawn:
+    description: Delete spawn command
