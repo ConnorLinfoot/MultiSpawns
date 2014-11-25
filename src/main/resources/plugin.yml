@@ -11,3 +11,6 @@ commands:
   multispawns:
     aliases: [ms]
     description: MultiSpawns command
+permissions:
+  multispawn.admin:
+    default: op

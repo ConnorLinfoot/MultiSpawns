@@ -13,6 +13,11 @@ public class AddSpawnCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        if (!sender.hasPermission("multispawn.admin")) {
+            sender.sendMessage(MultiSpawns.Prefix + ChatColor.RED + "You do not have the permissions to run this command");
+            return false;
+        }
+
         if( !(sender instanceof Player) ){
             sender.sendMessage(MultiSpawns.Prefix + ChatColor.RED + "Command must be ran as a player");
             return false;
