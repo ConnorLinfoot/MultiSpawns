@@ -31,6 +31,7 @@ public class AddSpawnCommand implements CommandExecutor {
         config.set("Spawns." + name + ".X",location.getBlockX());
         config.set("Spawns." + name + ".Y",location.getBlockY());
         config.set("Spawns." + name + ".Z",location.getBlockZ());
+        config.set("Spawns." + name + ".World", location.getWorld().getName());
         MultiSpawns.getPlugin().saveConfig();
         sender.sendMessage(MultiSpawns.Prefix + ChatColor.GREEN + "The spawn " + name + " was added");
 
