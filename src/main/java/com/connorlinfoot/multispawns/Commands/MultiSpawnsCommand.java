@@ -14,8 +14,19 @@ public class MultiSpawnsCommand implements CommandExecutor {
             sender.sendMessage(MultiSpawns.Prefix + ChatColor.AQUA + "MultiSpawns Help");
             sender.sendMessage(MultiSpawns.Prefix + ChatColor.GREEN + "/addspawn <name> - Add a spawn");
             sender.sendMessage(MultiSpawns.Prefix + ChatColor.GREEN + "/delspawn <name> - Delete a spawn");
+			sender.sendMessage(MultiSpawns.Prefix + ChatColor.GREEN + "/spawn - Go to a random spawn");
+			sender.sendMessage(MultiSpawns.Prefix + ChatColor.GREEN + "/multispawns reload - Reload the config");
             return true;
-        }
+        } else if (args.length >= 1 && args[0].equalsIgnoreCase("help")) {
+			if (sender instanceof Player && !sender.hasPermission("multispawns.admin")) {
+				sender.sendMessage(MultiSpawns.Prefix + ChatColor.RED + "You do not have the permissions to run this command");
+				return false;
+			}
+			
+			MultiSpawns.getPlugin().reloadConfig();
+			sender.sendMessage(MultiSpawns.Prefix + ChatColor.GREEN + "Configuration has been reloaded");
+			return true;
+		}
         sender.sendMessage(MultiSpawns.Prefix + ChatColor.AQUA + "\"" + MultiSpawns.getPlugin().getDescription().getName() + "\" - Version: " + MultiSpawns.getPlugin().getDescription().getVersion());
         return true;
     }

@@ -3,6 +3,7 @@ package com.connorlinfoot.multispawns;
 import com.connorlinfoot.multispawns.Commands.AddSpawnCommand;
 import com.connorlinfoot.multispawns.Commands.DelSpawnCommand;
 import com.connorlinfoot.multispawns.Commands.MultiSpawnsCommand;
+import com.connorlinfoot.multispawns.Commands.SpawnCommand;
 import com.connorlinfoot.multispawns.Listeners.PlayerJoin;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -16,6 +17,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class MultiSpawns extends JavaPlugin {
     private static Plugin plugin;
     public static boolean SNAPSHOT = false;
+	public static boolean ONLYNEW = false;
     public static String Prefix = ChatColor.GRAY + "[" + ChatColor.AQUA + "MultiSpawns" + ChatColor.GRAY + "] " + ChatColor.RESET;
 
     @Override
@@ -23,6 +25,7 @@ public class MultiSpawns extends JavaPlugin {
         plugin = this;
         getConfig().options().copyDefaults(true);
         saveConfig();
+		ONLYNEW = getConfig().getBoolean("Only Teleport If New Player");
         Server server = getServer();
         ConsoleCommandSender console = server.getConsoleSender();
 
@@ -63,6 +66,7 @@ public class MultiSpawns extends JavaPlugin {
         getCommand("addspawn").setExecutor(new AddSpawnCommand());
         getCommand("delspawn").setExecutor(new DelSpawnCommand());
         getCommand("multispawns").setExecutor(new MultiSpawnsCommand());
+		getCommand("spawn").setExecutor(new SpawnCommand());
         console.sendMessage(Prefix + "Commands have been registered");
     }
 }

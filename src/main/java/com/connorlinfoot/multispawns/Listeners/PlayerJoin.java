@@ -15,10 +15,18 @@ public class PlayerJoin implements Listener {
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
-        randomSpawn(event.getPlayer());
+		if (MultiSpawns.ONLYNEW) {
+			if (!MultiSpawns.getPlugin().getConfig().isSet("Players." + event.getPlayer().getUniqueId().toString()) {
+				randomSpawn(event.getPlayer());
+				MultiSpawns.getPlugin().getConfig().set("Players." + event.getPlayer().getUniqueId().toString(), true );
+				MultiSpawns.getPlugin().saveConfig();
+			}
+		} else {
+			randomSpawn(event.getPlayer());
+		}
     }
 
-    private static void randomSpawn(Player player) {
+    public static void randomSpawn(Player player) {
         FileConfiguration config = MultiSpawns.getPlugin().getConfig();
         if (config.getConfigurationSection("Spawns") == null) return;
         int size = config.getConfigurationSection("Spawns").getKeys(false).size();
