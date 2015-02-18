@@ -16,7 +16,7 @@ public class PlayerJoin implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
 		if (MultiSpawns.ONLYNEW) {
-			if (!MultiSpawns.getPlugin().getConfig().isSet("Players." + event.getPlayer().getUniqueId().toString()) {
+			if (!MultiSpawns.getPlugin().getConfig().isSet("Players." + event.getPlayer().getUniqueId().toString())) {
 				randomSpawn(event.getPlayer());
 				MultiSpawns.getPlugin().getConfig().set("Players." + event.getPlayer().getUniqueId().toString(), true );
 				MultiSpawns.getPlugin().saveConfig();
